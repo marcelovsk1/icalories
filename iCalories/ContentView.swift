@@ -62,11 +62,22 @@ struct ContentView: View {
         .navigationViewStyle(.stack)
     }
     private func deleteFood(offsets: IndexSet) {
-        //
+        withAnimation {
+            offsets.map {food[$0]} .forEach(managedObjContext.delete)
+            
+            DataController().save(context: managedObjContext)
+        }
     }
     
     private func totalCaloriesToday() -> Double {
-        return 0.0
+        var caloriesToday: Double = 0
+        for item in food {
+            if Calendar.current.isDateInToday(item.date!) {
+                caloriesToday += item.calories
+            }
+        }
+        
+        return caloriesToday
     }
 }
 
