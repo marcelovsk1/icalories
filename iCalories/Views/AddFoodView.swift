@@ -10,6 +10,7 @@ import SwiftUI
 struct AddFoodView: View {
     @Environment (\.managedObjectContext) var managedObjContext
     @Environment(\.dismiss) var dismiss
+//    @EnvironmentObject var dataController: DataController 
     
     @State private var name = ""
     @State private var calories: Double = 0
@@ -30,8 +31,8 @@ struct AddFoodView: View {
                     Spacer()
                     Button("Submit") {
                         DataController().addFood(name: name,
-                            calories: calories, context: managedObjContext)
-                        dismiss()
+                            calories: calories, context:
+                                managedObjContext)
                     }
                     Spacer()
                 }

@@ -17,7 +17,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
-               Text("\(Int(totalCaloriesToday())) Kcal (Today)")
+                Text("\(Int(totalCaloriesToday())) Kcal (Today)")
                     .foregroundColor(.gray)
                     .padding(.horizontal)
                 List {
@@ -29,10 +29,10 @@ struct ContentView: View {
                                         .bold()
                                     
                                     Text("\(Int(food.calories))") +
-                                        Text("calories").foregroundColor(.red)
+                                    Text("calories").foregroundColor(.red)
                                 }
                                 Spacer()
-                                Text(calcTimeSince(date: food.date!))
+                                Text(calcTimeSince(date:food.date!))
                                     .foregroundColor(.gray)
                                     .italic()
                             }
@@ -44,7 +44,7 @@ struct ContentView: View {
             }
             .navigationTitle("iCalories")
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing){
+                ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         showingAddView.toggle()
                     } label: {
@@ -63,7 +63,7 @@ struct ContentView: View {
     }
     private func deleteFood(offsets: IndexSet) {
         withAnimation {
-            offsets.map {food[$0]} .forEach(managedObjContext.delete)
+            offsets.map { food[$0]} .forEach(managedObjContext.delete)
             
             DataController().save(context: managedObjContext)
         }
@@ -76,7 +76,6 @@ struct ContentView: View {
                 caloriesToday += item.calories
             }
         }
-        
         return caloriesToday
     }
 }
